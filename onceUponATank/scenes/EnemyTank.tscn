@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/EnemyTank.gd" type="Script" id=1]
+[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12.2624, 12.1018 )
+
+[node name="EnemyTank" type="KinematicBody2D" index="0"]
+
+position = Vector2( 273.702, 169.3 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+Bullet = null
+speed = null
+rotation_speed = null
+gun_cooldown = null
+health = null
+
+[node name="Body" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 265, 84, 83 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Turret" type="Sprite" parent="." index="1"]
+
+editor/display_folded = true
+texture = ExtResource( 2 )
+offset = Vector2( 20, 0 )
+region_enabled = true
+region_rect = Rect2( 199, 36, 60, 25 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="Muzzle" type="Position2D" parent="Turret" index="0"]
+
+position = Vector2( 50, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( -0.399994, 0.18338 )
+scale = Vector2( 3.16068, 3.17312 )
+shape = SubResource( 1 )
+
+
