@@ -9,7 +9,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 63.334, 971.506, 0, 0, 0, 0, 52.0474, 2018.35, 0, 0, 0, 0, 464.011, 1995.77, 0, 0, 0, 0, 469.655, 1750.29, 0, 0, 0, 0, 1087.6, 1741.82, 0, 0, 0, 0, 1084.78, 963.041, 0, 0, 0, 0, 49.2257, 968.684 )
+"points": PoolVector2Array( 0, 0, -66.7895, 30.9512, 63.334, 971.506, -32.5071, -120.603, 86.2446, 50.4199, 77.7041, 1991.14, -128.04, -20.566, 49.0931, -78.947, 464.011, 1995.77, -57.0542, 31.8442, 6.13873, -83.4421, 469.655, 1750.29, -131.856, 48.7535, 78.6704, -107.479, 1087.6, 1741.82, 0, 0, -104.515, -43.1694, 1084.78, 963.041, 60.2735, -65.1605, 0, 0, 63.334, 971.506 )
 }
 
 [node name="Node" type="Node2D" index="0"]
@@ -18,6 +18,7 @@ script = ExtResource( 1 )
 
 [node name="Ground" type="TileMap" parent="." index="0"]
 
+modulate = Color( 0.378906, 0.374466, 0.374466, 1 )
 mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
@@ -39,17 +40,20 @@ _sections_unfolded = [ "Cell", "Visibility" ]
 
 [node name="Tank" parent="." index="1" instance=ExtResource( 3 )]
 
+position = Vector2( 493.432, 1281.13 )
+
 [node name="Paths" type="Node" parent="." index="2"]
 
 [node name="Path2D" type="Path2D" parent="Paths" index="0"]
 
+position = Vector2( -14.2268, 2.66931 )
 curve = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D" index="0"]
 
 position = Vector2( 63.334, 971.506 )
-rotation = 1.58158
+rotation = 2.52176
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -64,6 +68,6 @@ position = Vector2( 20.6105, -11.3905 )
 speed = 150
 rotation_speed = 1.0
 gun_cooldown = 0.4
-health = 100
+detection_radius = 800.0
 
 

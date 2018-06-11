@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/EnemyTank.gd" type="Script" id=1]
 [ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=2]
@@ -8,7 +8,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 12.2624, 12.1018 )
 
-[node name="EnemyTank" type="KinematicBody2D" index="0"]
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 274.711
+
+[node name="EnemyTank" type="KinematicBody2D"]
 
 position = Vector2( 273.702, 169.3 )
 input_pickable = false
@@ -20,10 +25,12 @@ __meta__ = {
 "_edit_group_": true
 }
 Bullet = null
-speed = null
-rotation_speed = null
-gun_cooldown = null
-health = null
+speed = 100
+rotation_speed = 0.4
+gun_cooldown = 1.0
+health = 100
+turret_speed = 1.0
+detection_radius = 200.0
 
 [node name="Body" type="Sprite" parent="." index="0"]
 
@@ -58,5 +65,23 @@ autostart = false
 position = Vector2( -0.399994, 0.18338 )
 scale = Vector2( 3.16068, 3.17312 )
 shape = SubResource( 1 )
+
+[node name="DetectionArea" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
+
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 
 
