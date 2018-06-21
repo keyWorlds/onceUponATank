@@ -9,7 +9,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, -66.7895, 30.9512, 63.334, 971.506, -32.5071, -120.603, 86.2446, 50.4199, 77.7041, 1991.14, -128.04, -20.566, 49.0931, -78.947, 464.011, 1995.77, -57.0542, 31.8442, 6.13873, -83.4421, 469.655, 1750.29, -131.856, 48.7535, 78.6704, -107.479, 1087.6, 1741.82, 0, 0, -104.515, -43.1694, 1084.78, 963.041, 60.2735, -65.1605, 0, 0, 63.334, 971.506 )
+"points": PoolVector2Array( -48.0517, 87.0713, -33.0994, -95.906, 49.9998, 935.955, -72.773, -14.9762, 27.8277, 75.9235, 52.7119, 1988.05, -16.3736, 24.8511, 61.4012, -84.9078, 961.088, 1998.41, 39.1174, 48.7142, 21.0632, -50.2365, 1077.53, 950.429, 1.50452, -63.9373, 0, 0, 49.9998, 937.477 )
 }
 
 [node name="Node" type="Node2D" index="0"]
@@ -46,14 +46,15 @@ position = Vector2( 493.432, 1281.13 )
 
 [node name="Path2D" type="Path2D" parent="Paths" index="0"]
 
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( -14.2268, 2.66931 )
 curve = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D" index="0"]
 
-position = Vector2( 63.334, 971.506 )
-rotation = 2.52176
+position = Vector2( 49.9998, 935.955 )
+rotation = -1.93907
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -69,5 +70,38 @@ speed = 150
 rotation_speed = 1.0
 gun_cooldown = 0.4
 detection_radius = 800.0
+
+[node name="Path2D2" type="Path2D" parent="Paths" index="1"]
+
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+position = Vector2( 1430.94, -236.102 )
+scale = Vector2( 1.00188, 0.990161 )
+curve = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D2" index="0"]
+
+position = Vector2( 49.9998, 935.955 )
+rotation = -1.93907
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="EnemyTank" parent="Paths/Path2D2/PathFollow2D" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 20.6105, -11.3905 )
+speed = 150
+rotation_speed = 1.0
+gun_cooldown = 0.4
+detection_radius = 800.0
+
+[connection signal="fire" from="Tank" to="." method="_on_Tank_fire"]
 
 

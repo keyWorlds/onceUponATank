@@ -13,3 +13,9 @@ func control(delta):
 		velocity = Vector2(speed, 0).rotated(rotation)
 	if Input.is_action_pressed("back"):
 		velocity = Vector2(-speed/2, 0).rotated(rotation)
+	if Input.is_action_just_pressed('click'):
+		fire()
+
+
+func _on_Timer_timeout():
+	can_openFire = true

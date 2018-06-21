@@ -1,25 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Player1.gd" type="Script" id=1]
-[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=2]
+[ext_resource path="res://scenes/PlayerBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 12.2624, 12.1018 )
 
-[node name="Tank" type="KinematicBody2D"]
+[node name="Tank" type="KinematicBody2D" index="0"]
 
-position = Vector2( 466.167, 306.413 )
+position = Vector2( 473.317, 306.413 )
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 5
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-Bullet = null
+_sections_unfolded = [ "Collision" ]
+Bullet = ExtResource( 2 )
 speed = 200
 rotation_speed = 1.0
 gun_cooldown = 0.4
@@ -27,15 +26,14 @@ health = 100
 
 [node name="Body" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 307, 263, 82, 82 )
 _sections_unfolded = [ "Region" ]
 
 [node name="Turret" type="Sprite" parent="." index="1"]
 
-editor/display_folded = true
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( 20, 0 )
 region_enabled = true
 region_rect = Rect2( 683, 14, 61, 24 )
@@ -43,7 +41,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Muzzle" type="Position2D" parent="Turret" index="0"]
 
-position = Vector2( 50, 0 )
+position = Vector2( 67.4774, -0.397217 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Timer" type="Timer" parent="." index="2"]
@@ -84,5 +82,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Limit" ]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 
